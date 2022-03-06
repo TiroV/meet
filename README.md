@@ -1,3 +1,7 @@
+Welcome to the readme file for the meet app! It is to be an application that allows a person to find events going on in their local area and to display the goings on in real time.
+
+A list of Some Features:
+
 FEATURE 1: FILTER EVENTS BY CITY
 
 User story: As a user, I should be able to filter events by city so that I can better navigate the app to find information pertinent to me.
