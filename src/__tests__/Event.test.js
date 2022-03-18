@@ -10,21 +10,21 @@ describe("<EventList /> component", () => {
         EventWrapper = shallow(<Event event={mockData[1]} />);
     });
 
-    test("renders an event", () => {
+    test("render an event", () => {
         expect(EventWrapper.find(".event")).toHaveLength(1);
     });
 
-    test("renders the location", () => {
+    test("render the location", () => {
         expect(EventWrapper.find(".location")).toHaveLength(1);
     });
 
-    test("renders the summary", () => {
+    test("render the summary", () => {
         expect(EventWrapper.find(".summary")).toHaveLength(1);
     });
 
     //button area
 
-    test("renders the show details button", () => {
+    test("render the show details button", () => {
         expect(EventWrapper.find(".show-details")).toHaveLength(1);
     });
 
