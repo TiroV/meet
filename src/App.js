@@ -7,6 +7,9 @@ import { getEvents, extractLocations, checkToken, getAccessToken } from
   './api';
 import './nprogress.css';
 import "./App.css";
+import {
+  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip
+} from 'recharts';
 
 
 class App extends Component {
@@ -17,17 +20,23 @@ class App extends Component {
     showWelcomeScreen: undefined
   }
 
-  updateEvents = (location) => {
+  updateEvents = (location, eventCount) => {
+    this.mounted = true;
     getEvents().then((events) => {
-      const locationEvents = (location === 'all') ?
-        events :
-        events.filter((event) => event.location === location);
-      this.setState({
-        events: locationEvents
-
-      });
+      const locationEvents =
+        location === "all" && eventCount === 0
+          ? events
+          : location !== "all" && eventCount === 0
+            ? events.filter((event) => event.location === location)
+            : events.slice(0, eventCount);
+      if (this.mounted) {
+        this.setState({
+          events: locationEvents,
+          numberOfEvents: eventCount,
+        });
+      }
     });
-  }
+  };
 
   async componentDidMount() {
     this.mounted = true;
@@ -46,28 +55,64 @@ class App extends Component {
     }
   }
 
+  getData = () => {
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter((event) => event.location === location).length
+      const city = location.split(', ').shift()
+      return { city, number };
+    })
+    return data;
+  };
 
   componentWillUnmount() {
     this.mounted = false;
   }
 
+  updateNumberOfEvents = (numberOfEvents) => {
+    this.setState(
+      {
+        numberOfEvents,
+      },
+      this.updateEvents(this.state.location, numberOfEvents)
+    );
+  };
+
   render() {
+    const { locations, numberOfEvents } = this.state;
     if (this.state.showWelcomeScreen === undefined) return <div
       className="App" />
 
     return (
       <div className="App">
-        <CitySearch locations={this.state.locations} updateEvents={this.updateEvents} />
+        <h1>Meet App</h1>
+        <h4>Choose your nearest city</h4>
+        <CitySearch
+          locations={locations}
+          numberOfEvents={numberOfEvents}
+          updateEvents={this.updateEvents}
+        />
         <EventList events={this.state.events} />
+        <h4>Events in each city</h4>
         <NumberOfEvents
           updateNumberOfEvents={(number) => {
             this.updateNumberOfEvents(number);
-            <WelcomeScreen showWelcomeScreen={this.state.showWelcomeScreen}
-              getAccessToken={() => { getAccessToken() }} />
-
-
           }}
         />
+        <ScatterChart
+          width={800}
+          height={400}
+          margin={{
+            top: 20, right: 20, bottom: 20, left: 20,
+          }}
+        >
+          <CartesianGrid />
+          <XAxis type="category" dataKey="city" name="city" />
+          <YAxis type="number" dataKey="number" name="number of events" /> allowDecimals={false}
+          <Tooltip cursor={{ strokeDasharray: '3 3' }} />
+          <Scatter data={this.getData()} fill="#8884d8" />
+        </ScatterChart>
+        <EventList events={this.state.events} />
       </div>
     );
   }
