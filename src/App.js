@@ -8,7 +8,7 @@ import { getEvents, extractLocations, checkToken, getAccessToken } from
 import './nprogress.css';
 import "./App.css";
 import {
-  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip
+  ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
 
 
@@ -65,6 +65,8 @@ class App extends Component {
     return data;
   };
 
+
+
   componentWillUnmount() {
     this.mounted = false;
   }
@@ -99,6 +101,7 @@ class App extends Component {
             this.updateNumberOfEvents(number);
           }}
         />
+
         <ScatterChart
           width={800}
           height={400}
@@ -113,6 +116,12 @@ class App extends Component {
           <Scatter data={this.getData()} fill="#8884d8" />
         </ScatterChart>
         <EventList events={this.state.events} />
+        <WelcomeScreen
+          showWelcomeScreen={this.state.showWelcomeScreen}
+          getAccessToken={() => {
+            getAccessToken();
+          }}
+        />
       </div>
     );
   }
