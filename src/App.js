@@ -20,23 +20,7 @@ class App extends Component {
     showWelcomeScreen: undefined
   }
 
-  updateEvents = (location, eventCount) => {
-    this.mounted = true;
-    getEvents().then((events) => {
-      const locationEvents =
-        location === "all" && eventCount === 0
-          ? events
-          : location !== "all" && eventCount === 0
-            ? events.filter((event) => event.location === location)
-            : events.slice(0, eventCount);
-      if (this.mounted) {
-        this.setState({
-          events: locationEvents,
-          numberOfEvents: eventCount,
-        });
-      }
-    });
-  };
+
 
   async componentDidMount() {
     this.mounted = true;
@@ -55,15 +39,7 @@ class App extends Component {
     }
   }
 
-  getData = () => {
-    const { locations, events } = this.state;
-    const data = locations.map((location) => {
-      const number = events.filter((event) => event.location === location).length
-      const city = location.split(', ').shift()
-      return { city, number };
-    })
-    return data;
-  };
+
 
 
 
@@ -78,6 +54,34 @@ class App extends Component {
       },
       this.updateEvents(this.state.location, numberOfEvents)
     );
+  };
+
+  updateEvents = (location, eventCount) => {
+    this.mounted = true;
+    getEvents().then((events) => {
+      const locationEvents =
+        location === "all" && eventCount === 0
+          ? events
+          : location !== "all" && eventCount === 0
+            ? events.filter((event) => event.location === location)
+            : events.slice(0, eventCount);
+      if (this.mounted) {
+        this.setState({
+          events: locationEvents,
+          numberOfEvents: eventCount,
+        });
+      }
+    });
+  };
+
+  getData = () => {
+    const { locations, events } = this.state;
+    const data = locations.map((location) => {
+      const number = events.filter((event) => event.location === location).length
+      const city = location.split(', ').shift()
+      return { city, number };
+    })
+    return data;
   };
 
   render() {
