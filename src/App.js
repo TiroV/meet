@@ -34,6 +34,7 @@ class App extends Component {
       getEvents().then((events) => {
         if (this.mounted) {
           this.setState({ events, locations: extractLocations(events) });
+          console.log('line 37, first event call', events)
         }
       });
     }
@@ -59,17 +60,20 @@ class App extends Component {
   updateEvents = (location, eventCount) => {
     this.mounted = true;
     getEvents().then((events) => {
+      console.log('expecting event, line 63', events)
       const locationEvents =
         location === "all" && eventCount === 0
           ? events
           : location !== "all" && eventCount === 0
             ? events.filter((event) => event.location === location)
             : events.slice(0, eventCount);
+      console.log('line 70, locationevents', locationEvents)
       if (this.mounted) {
         this.setState({
           events: locationEvents,
           numberOfEvents: eventCount,
         });
+        console.log('line 76 aftercset state', events)
       }
     });
   };
