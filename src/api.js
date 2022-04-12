@@ -9,6 +9,7 @@ export const extractLocations = (events) => {
 };
 
 export const checkToken = async (accessToken) => {
+    console.log('For accesstoken', accessToken)
     const result = await fetch(
         `https://www.googleapis.com/oauth2/v1/tokeninfo?access_token=${accessToken}`
     )
@@ -31,6 +32,7 @@ export const getEvents = async () => {
         return data ? JSON.parse(data).events : [];
     }
     const token = await getAccessToken();
+    console.log('For token, line 35', token)
 
     if (token) {
         removeQuery();
@@ -82,6 +84,8 @@ const getToken = async (code) => {
 export const getAccessToken = async () => {
     const accessToken = localStorage.getItem("access_token");
     const tokenCheck = accessToken && (await checkToken(accessToken));
+    console.log('For accessToken two, line 87', accessToken)
+    console.log('TokenCheck', tokenCheck)
 
     if (!accessToken || tokenCheck.error) {
         await localStorage.removeItem("access_token");
