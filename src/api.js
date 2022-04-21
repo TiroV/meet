@@ -4,6 +4,7 @@ import NProgress from "nprogress";
 
 export const extractLocations = (events) => {
     var extractLocations = events.map((event) => event.location);
+    console.log('line 7, api, first events call', events)
     var locations = [...new Set(extractLocations)];
     return locations;
 };
@@ -30,7 +31,8 @@ export const getEvents = async () => {
         const data = localStorage.getItem("lastEvents");
         NProgress.done();
         return data ? JSON.parse(data).events : [];
-    }
+
+    } console.log('line 35, if navigator is online', events)
     const token = await getAccessToken();
     console.log('For token, line 35', token)
 

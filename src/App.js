@@ -73,7 +73,7 @@ class App extends Component {
           events: locationEvents,
           numberOfEvents: eventCount,
         });
-        console.log('line 76 aftercset state', events)
+        console.log('line 76 after set state', events)
       }
     });
   };
