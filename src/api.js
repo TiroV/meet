@@ -32,7 +32,7 @@ export const getEvents = async () => {
         NProgress.done();
         return data ? JSON.parse(data).events : [];
 
-    } console.log('line 35, if navigator is online', events)
+    }
     const token = await getAccessToken();
     console.log('For token, line 35', token)
 
