@@ -45,33 +45,25 @@ class App extends Component {
   }
 
   updateEvents = (location, eventCount) => {
-    const { currentLocation, numberOfEvents } = this.state;
-    if (location) {
-      getEvents().then((events) => {
-        console.log('expecting event, line 50', events)
-        const locationEvents = location === 'all' ?
-          events : events.filter((event) => event.location === location);
-        const filteredEvents = locationEvents.slice(0, numberOfEvents);
-        console.log('line 55, locationevents', locationEvents)
+    this.mounted = true;
+    getEvents().then((events) => {
+      console.log('expecting event, line 63', events)
+      const locationEvents =
+        location === "all" && eventCount === 0
+          ? events
+          : location !== "all" && eventCount === 0
+            ? events.filter((event) => event.location === location)
+            : events.slice(0, eventCount);
+      console.log('line 70, locationevents', locationEvents)
+      if (this.mounted) {
         this.setState({
-          events: filteredEvents,
-          currentLocation: location,
-        });
-      });
-    }
-    else {
-      getEvents().then((events) => {
-        const locationEvents = currentLocation === 'all' ?
-          events : events.filter((event) => event.location === currentLocation);
-        const filteredEvents = locationEvents.slice(0, eventCount);
-        this.setState({
-          events: filteredEvents,
+          events: locationEvents,
           numberOfEvents: eventCount,
         });
-        console.log('line 71 after set state', events)
-      });
-    }
-  }
+        console.log('line 76 after set state', events)
+      }
+    });
+  };
 
   updateNumberOfEvents = (numberOfEvents) => {
     this.setState(
