@@ -20,6 +20,22 @@ export const checkToken = async (accessToken) => {
     return result;
 };
 
+const getToken = async (code) => {
+    const encodeCode = encodeURIComponent(code);
+    const { access_token } = await fetch(
+        "https://u2kq57qw8e.execute-api.us-west-2.amazonaws.com/dev/api/token" +
+        "/" +
+        encodeCode
+    )
+        .then((res) => {
+            return res.json();
+        })
+        .catch((error) => error);
+    access_token && localStorage.setItem("access_token", access_token);
+
+    return access_token;
+};
+
 export const getEvents = async () => {
     NProgress.start();
 
@@ -67,21 +83,7 @@ const removeQuery = () => {
     }
 };
 
-const getToken = async (code) => {
-    const encodeCode = encodeURIComponent(code);
-    const { access_token } = await fetch(
-        "https://u2kq57qw8e.execute-api.us-west-2.amazonaws.com/dev/api/token" +
-        "/" +
-        encodeCode
-    )
-        .then((res) => {
-            return res.json();
-        })
-        .catch((error) => error);
-    access_token && localStorage.setItem("access_token", access_token);
 
-    return access_token;
-};
 
 export const getAccessToken = async () => {
     const accessToken = localStorage.getItem("access_token");
