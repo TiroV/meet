@@ -29,7 +29,7 @@ o.svg"
                     </div>
                 </div>
                 <a
-                    href="https://github.com/TiroV.github.io/meet/privacy.html"
+                    href="https://tirov.github.io/meet/privacy.html"
                     rel="nofollow noopener"
                 >
                     Privacy policy
