@@ -122,6 +122,13 @@ class App extends Component {
         </ScatterChart>
         <EventList events={this.state.events} />
 
+        <WelcomeScreen
+          showWelcomeScreen={this.state.showWelcomeScreen}
+          getAccessToken={() => {
+            getAccessToken();
+          }}
+        />
+
       </div>
     );
   }
