@@ -41,3 +41,4 @@ const EventGenre = ({ events }) => {
         </ResponsiveContainer>
     );
 }
+export default EventGenre;
