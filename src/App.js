@@ -111,7 +111,7 @@ class App extends Component {
           }}
         />
         <div classname="data-visualization-wrapper">
-          <EventGenre events={events} />
+          <EventGenre events={this.state.events} />
           <ResponsiveContainer width="100%" height={400}>
             <ScatterChart
               margin={{
