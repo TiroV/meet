@@ -10,6 +10,7 @@ import "./App.css";
 import {
   ScatterChart, Scatter, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer
 } from 'recharts';
+import EventGenre from './EventGenre';
 
 
 class App extends Component {
@@ -110,6 +111,7 @@ class App extends Component {
           }}
         />
         <div classname="data-visualization-wrapper">
+          <EventGenre events={events} />
           <ResponsiveContainer width="100%" height={400}>
             <ScatterChart
               margin={{
