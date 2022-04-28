@@ -95,14 +95,6 @@ class App extends Component {
       <div className="App">
         <h1>Meet App</h1>
         <h4>Choose your nearest city</h4>
-        <CitySearch
-          locations={locations}
-          numberOfEvents={numberOfEvents}
-          updateEvents={this.updateEvents}
-        />
-
-
-
         <EventList events={this.state.events} />
         <h4>Events in each city</h4>
         <NumberOfEvents
@@ -126,6 +118,15 @@ class App extends Component {
             </ScatterChart>
           </ResponsiveContainer>
         </div>
+
+        <CitySearch
+          locations={locations}
+          numberOfEvents={numberOfEvents}
+          updateEvents={this.updateEvents}
+        />
+
+
+
 
 
         <WelcomeScreen
