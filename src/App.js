@@ -94,7 +94,16 @@ class App extends Component {
     return (
       <div className="App">
         <h1>Meet App</h1>
-        <EventList events={this.state.events} />
+        <h4>Choose your nearest city</h4>
+        <CitySearch
+          locations={locations}
+          numberOfEvents={numberOfEvents}
+          updateEvents={this.updateEvents}
+        />
+
+
+
+
         <h4>Events in each city</h4>
         <NumberOfEvents
           updateNumberOfEvents={(number) => {
@@ -117,17 +126,6 @@ class App extends Component {
             </ScatterChart>
           </ResponsiveContainer>
         </div>
-        <h4>Choose your nearest city</h4>
-        <CitySearch
-          locations={locations}
-          numberOfEvents={numberOfEvents}
-          updateEvents={this.updateEvents}
-        />
-
-
-
-
-
 
 
         <WelcomeScreen
@@ -136,8 +134,9 @@ class App extends Component {
             getAccessToken();
           }}
         />
-
+        <EventList events={this.state.events} />
       </div>
+
     );
   }
 }
