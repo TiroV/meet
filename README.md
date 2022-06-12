@@ -1,4 +1,5 @@
-Welcome to the readme file for the meet app! It is to be an application that allows a person to find events going on in their local area and to display the goings on in real time.
+# Meet App
+Welcome to the readme file for the meet app! It is to be an application build using React that allows a person to find events going on in their local area and to display the goings on in real time.
 
 A list of Some Features:
 
