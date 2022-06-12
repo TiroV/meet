@@ -2,7 +2,7 @@ Welcome to the readme file for the meet app! It is to be an application that all
 
 A list of Some Features:
 
-FEATURE 1: FILTER EVENTS BY CITY
+## FEATURE 1: FILTER EVENTS BY CITY
 
 User story: As a user, I should be able to filter events by city so that I can better navigate the app to find information pertinent to me.
 
@@ -11,7 +11,7 @@ Scenario 1: The user is browsing from all events and then decides to choose from
     When  The user wants to search for more detailed information
     Then  The user should be able to filter out information relevent to them
 
-FEATURE 2: SHOW/HIDE EVENT DETAILS
+## FEATURE 2: SHOW/HIDE EVENT DETAILS
 
 User story: As a user, I should be able to hide or show more information about events so that I can make better decisions about the information given.
 
@@ -21,7 +21,7 @@ Scenario 1: The user is interested in an event and clicks on it to find out more
     Then    The details will unfurl and show the user more information
 
 
-FEATURE 3: SPECIFY NUMBER OF EVENTS
+## FEATURE 3: SPECIFY NUMBER OF EVENTS
 
 User story: As a user, I should be able to tell the app to show more or less information so that I can take in the amount of information I want to.
 
@@ -31,7 +31,7 @@ Scenario 1:
     Then    The user can modify the amount of events displayed at a time
 
 
-FEATURE 4: USE THE APP OFFLINE
+## FEATURE 4: USE THE APP OFFLINE
 
 User story: As a user, I would want to be able to use the offline based on the information I last visited so I can use the app when the internet connection is out or when I lose service.
 
@@ -42,7 +42,7 @@ Scenario 1: The user is driving through an area with bad connection and wants to
     Then    The page will display even without a current connection
 
 
-FEATURE 5: ADD AN APP SHORTCUT TO THE HOME SCREEN
+## FEATURE 5: ADD AN APP SHORTCUT TO THE HOME SCREEN
 
 User story: As a user, I would want an app shortcut on the home screen so I have quick and easy access to the application.
 
